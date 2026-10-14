@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Urbania| Registro</title>
+  <link rel="stylesheet" href="/css/login_registres.css">
+
+</head>
+<body>
+  <div class="auth-shell">
+    <section class="auth-hero">
+<span class="brand-mark">
+    <img src="img/logo2.2.jpeg" alt="Logo de Urbania">
+  </span>      <h1>Administra facil y versatil.</h1>
+      <p>Registra una cuenta para gestionar actividades en zonas comunes, cupos de parquedero, revisa tu correspondencia y más .</p>
+      <div class="auth-points">
+        <div class="auth-point">Categorias: seguridad, residente y administrativo.</div>
+        <div class="auth-point">Gestor de horarios y cupos en zonas comunes y parqueaderos para visitantes.</div>
+        <div class="auth-point">Notificacion de correspondecia directa.</div>
+      </div>
+    </section>
+
+    <section class="auth-card-wrap">
+      <div class="card auth-card">
+        <div class="brand"><span class="brand-mark">
+    <img src="img/logo2.2.jpeg" alt="Logo de Urbania"></div>
+        <h2 class="page-title">Registro</h2>
+        <p class="page-subtitle">Completa tus datos para crear una cuenta para empezar a controlar desde casa.</p>
+        <div id="formAlert" class="alert"></div>
+        <form id="registerForm" class="form-grid">
+          <div class="field">
+            <label for="name">Nombre completo</label>
+            <input id="name" name="name" type="text" placeholder="Escribe tu nombre" required>
+          </div>
+          <div class="field">
+            <label for="email">Correo</label>
+            <input id="email" name="email" type="email" placeholder="usuario@correo.com" required>
+          </div>
+          <div class="row">
+            <div class="field">
+              <label for="password">Contrasena</label>
+              <input id="password" name="password" type="password" placeholder="Minimo 6 caracteres" required>
+            </div>
+            <div class="field">
+              <label for="confirmPassword">Confirmar contrasena</label>
+              <input id="confirmPassword" name="confirmPassword" type="password" placeholder="Repite la contrasena" required>
+            </div>
+          </div>
+          <button class="button full" type="submit">Crear cuenta</button>
+        </form>
+        <p class="auth-links">Ya tienes cuenta?</p>
+          <p class="auth-links"><a href="login.html">Inicia sesion</a></p>
+      </div>
+    </section>
+  </div>
+
+  
+</body>
+</html>

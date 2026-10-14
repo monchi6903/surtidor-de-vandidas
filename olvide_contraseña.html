@@ -1,0 +1,143 @@
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Restablece la contraseña de tu cuenta Urbania.">
+  <title>Urbania | Restablecer contraseña</title>
+  <link rel="stylesheet" href="css/login_registres.css">
+  <link rel="stylesheet" href="js">
+</head>
+<body>
+  <main class="auth-shell">
+    <section class="auth-hero">
+<span class="brand-mark">
+    <img src="img/logo2.2.jpeg" alt="Logo de Urbania">
+  </span>
+        <h1>Recupera el acceso a tu cuenta.</h1>
+      <p>Confirma tu correo y número de cédula para crear una nueva contraseña de forma segura.</p>
+      <div class="auth-points">
+        <div class="auth-point">Usa el correo registrado en tu cuenta.</div>
+        <div class="auth-point">Tu cédula nos ayuda a verificar tu identidad.</div>
+        <div class="auth-point">Elige una contraseña segura y fácil de recordar.</div>
+      </div>
+    </section>
+    <section class="auth-card-wrap">
+      <div class="card auth-card">
+<span class="brand-mark">
+    <img src="img/logo2.2.jpeg" alt="Logo de Urbania">
+  </span>
+          <h2 class="page-title">Restablecer contraseña</h2>
+        <p class="page-subtitle">Completa los datos para actualizar la contraseña de tu cuenta.</p>
+        <div id="formAlert" class="alert" role="alert" aria-live="polite"></div>
+        <form id="resetPasswordForm" class="form-grid" novalidate>
+          <div class="field">
+            <label for="email">Correo electrónico</label>
+            <input id="email" name="email" type="email" placeholder="usuario@correo.com" autocomplete="email" required>
+          </div>
+          <div class="field">
+            <label for="cedula">Número de cédula</label>
+            <input id="cedula" name="cedula" type="text" inputmode="numeric" pattern="[0-9]+" placeholder="Digita tu número de cédula" autocomplete="off" required>
+          </div>
+          <div class="field">
+            <label for="newPassword">Nueva contraseña</label>
+            <div class="password-input">
+              <input id="newPassword" name="newPassword" type="password" placeholder="Mínimo 6 caracteres" autocomplete="new-password" minlength="6" required>
+              <button class="password-toggle" type="button" aria-label="Mostrar nueva contraseña" aria-pressed="false" data-password-toggle="newPassword">Mostrar</button>
+            </div>
+          </div>
+          <div class="field">
+            <label for="confirmPassword">Confirmar nueva contraseña</label>
+            <div class="password-input">
+              <input id="confirmPassword" name="confirmPassword" type="password" placeholder="Repite la nueva contraseña" autocomplete="new-password" minlength="6" required>
+              <button class="password-toggle" type="button" aria-label="Mostrar confirmación de contraseña" aria-pressed="false" data-password-toggle="confirmPassword">Mostrar</button>
+              <i class="fa-solid fa-eye"></i>
+            </div>
+          </div>
+          <button class="button full" type="submit">Restablecer contraseña</button>
+        </form>
+        <p class="auth-links"><a href="login.html">Volver a iniciar sesión</a></p>
+      </div>
+    </section>
+  </main>
+  <!-- se usa java script para colocar las condiciones que deben cumplir en los datos a llenar  -->
+ <script>
+
+    const form = document.querySelector('#resetPasswordForm');
+
+    const alertBox = document.querySelector('#formAlert');
+
+    document.querySelectorAll('[data-password-toggle]').forEach((button) => {
+
+      button.addEventListener('click', () => {
+
+        const input = document.getElementById(button.dataset.passwordToggle);
+
+        const visible = input.type === 'text';
+
+        input.type = visible ? 'password' : 'text';
+
+        button.textContent = visible ? 'Mostrar' : 'Ocultar';
+
+        button.setAttribute('aria-pressed', String(!visible));
+
+        button.setAttribute('aria-label', `${visible ? 'Mostrar' : 'Ocultar'} contraseña`);
+
+      });
+
+    });
+
+    form.addEventListener('submit', (event) => {
+
+      event.preventDefault();
+
+      const email = form.email.value.trim();
+
+      const cedula = form.cedula.value.trim();
+
+      const password = form.newPassword.value;
+
+      const confirmation = form.confirmPassword.value;
+
+      let message = '';
+
+      if (!email || !cedula || !password || !confirmation) message = 'Completa todos los campos para continuar.';
+
+      else if (!form.email.checkValidity()) message = 'Ingresa un correo electrónico válido.';
+
+      else if (!/^\d+$/.test(cedula)) message = 'La cédula debe contener únicamente números.';
+
+      else if (password.length < 6) message = 'La nueva contraseña debe tener al menos 6 caracteres.';
+
+      else if (password !== confirmation) message = 'Las contraseñas no coinciden.';
+
+      if (message) {
+
+        alertBox.textContent = message;
+
+        alertBox.className = 'alert error show';
+
+        return;
+
+      }
+
+      alertBox.textContent = 'Datos verificados. Tu contraseña se restableció correctamente.';
+
+      alertBox.className = 'alert success show';
+
+      form.reset();
+
+      document.querySelectorAll('[data-password-toggle]').forEach((button) => {
+
+        document.getElementById(button.dataset.passwordToggle).type = 'password';
+
+        button.textContent = 'Mostrar';
+
+        button.setAttribute('aria-pressed', 'false');
+
+      });
+
+    });
+
+  </script>
+</body>
+</html>
